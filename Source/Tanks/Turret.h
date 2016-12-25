@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "Turret.generated.h"
 
+class Tank;
 UCLASS()
 class TANKS_API ATurret : public AActor
 {
@@ -19,7 +20,13 @@ public:
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
-
+protected:
+    // Max turn ratein degrees/second for the turret.
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Turret")
+    float YawSpeed;
+    
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Turret")
+    ATank* Tank;
 private:
     // Helpful debug tool = wich way is the tank facing
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Turret", meta = (AllowPrivateAccess = "true"))
