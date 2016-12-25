@@ -5,7 +5,8 @@
 #include "GameFramework/Actor.h"
 #include "Turret.generated.h"
 
-class Tank;
+class ATank;
+
 UCLASS()
 class TANKS_API ATurret : public AActor
 {
@@ -27,6 +28,9 @@ protected:
     
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Turret")
     ATank* Tank;
+    
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Turret")
+    TSubclassOf<AActor> Projectile;
 private:
     // Helpful debug tool = wich way is the tank facing
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Turret", meta = (AllowPrivateAccess = "true"))

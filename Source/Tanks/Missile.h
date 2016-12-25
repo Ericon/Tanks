@@ -22,5 +22,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Projectile")
     float Speed;
-	
+protected:
+    UFUNCTION(BlueprintNativeEvent, Category = "Projectile")
+    void Explode();
+    virtual void Explode_Implementation();    
 };

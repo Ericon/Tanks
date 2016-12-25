@@ -4,7 +4,7 @@
 #include "Tank.h"
 #include "PaperSpriteComponent.h"
 #include "Turret.h"
-
+#include "Missile.h"
 
 // Sets default values
 ATurret::ATurret()
@@ -61,6 +61,21 @@ void ATurret::Tick( float DeltaTime )
           TurretDirection->SetWorldRotation(CurrentRotation);
         }
       }
+        
+        const FTankInput& CurrentInput = Tank->GetCurrentInput();
+        if(CurrentInput.bFire1 && Projectile)
+        {
+            if(UWorld* World = GetWorld())
+            {
+                if(AActor* NewProjectile = World->SpawnActor(Projectile))
+                {
+                    FVector Loc = TurretSprite->GetSocketLocation("Muzzle");
+                    FRotator Rot =  TurretSprite->GetComponentRotation();
+                    NewProjectile->SetActorLocation(Loc);
+                    NewProjectile->SetActorRotation(Rot);
+                }
+            }
+        }
     }
   }
 }

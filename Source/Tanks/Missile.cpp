@@ -18,6 +18,8 @@ void AMissile::BeginPlay()
 {
 	Super::BeginPlay();
 	
+    FTimerHandle DummyTimerHandle;
+    GetWorldTimerManager().SetTimer(DummyTimerHandle, this, &AMissile::Explode, 1.0f);
 }
 
 // Called every frame
@@ -25,6 +27,12 @@ void AMissile::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
-    
+    FVector Loc = GetActorLocation();
+    Loc += (DeltaTime*Speed) * GetTransform().GetUnitAxis(EAxis::X);
+    SetActorLocation(Loc);
 }
 
+void AMissile::Explode_Implementation()
+{
+    Destroy();
+}
