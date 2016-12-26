@@ -76,13 +76,17 @@ void ATank::BeginPlay()
 	
 }
 
+void ATank::DamageHealth(float Damage)
+{
+    
+}
+
 // Called every frame
 void ATank::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
     TankInput.Sanitize();
-    UE_LOG(LogTemp, Warning,  TEXT("Your message %f %f"), TankInput.MovementInput.X, TankInput.MovementInput.Y)
     // Move the tank
     {
         FVector DesiredMovementDirection = FVector(TankInput.MovementInput.X, TankInput.MovementInput.Y, 0.0f);
